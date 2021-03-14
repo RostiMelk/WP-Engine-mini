@@ -1,22 +1,22 @@
-const webpack = require('webpack');
+// const webpack = require('webpack');
 module.exports = {
-	publicPath: process.env.NODE_ENV === 'production' ? '/dist/' : '/',
-	outputDir: './dist/',
-	indexPath: '../index.php',
+    publicPath: '/',
+    outputDir: './dist/',
 
-	// css: {
-	// 	sourceMap: true,
-	// 	loaderOptions: {
-	// 		// sass: {
-	// 		// 	data: `
-	// 		// 		@import "src/assets/styles/global";
-	// 		// 	`
-	// 		// }
-	// 	}
-	// },
+    // css: {
+    // 	sourceMap: true,
+    // 	loaderOptions: {
+    // 		// sass: {
+    // 		// 	data: `
+    // 		// 		@import "src/assets/styles/global";
+    // 		// 	`
+    // 		// }
+    // 	}
+    // },
 
-	transpileDependencies: ['vuex-persist'],
-	configureWebpack: {
+    transpileDependencies: ['vuex-persist'],
+
+    configureWebpack: {
 		optimization: {
 			splitChunks: false,
 		},
@@ -26,8 +26,8 @@ module.exports = {
 		// 		contextRegExp: /moment$/
 		// 	})
 		// ]
-	},
-	/*
+	}
+    /*
 	chainWebpack: config => {
 		config.plugins.delete('prefetch')
 		config
@@ -37,5 +37,19 @@ module.exports = {
 			return args
 		})
 	}
-	*/
+	*/,
+
+    pages: {
+      popup: {
+        template: 'public/browser-extension.html',
+        entry: './src/popup/main.js',
+        title: 'Popup'
+      }
+    },
+
+    pluginOptions: {
+      browserExtension: {
+        componentOptions: {}
+      }
+    }
 };

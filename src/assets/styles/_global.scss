@@ -2,7 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap');
 
 body {
-	min-width: 400px;
+	width: 330px;
+	min-height: 540px;
+	min-width: 250px;
 	margin: 0;
 	font-family: $body-font-family;
 	overflow-x: hidden;
@@ -14,6 +16,13 @@ p {
 
 label {
 	font-weight: 600;
+	.footnote {
+		display: block;
+		opacity: 0.6;
+		font-size: 13px;
+		font-weight: 400;
+		margin-top: -2px;
+	}
 }
 
 input {
@@ -62,6 +71,11 @@ input {
 			background-color: $primary-1;
 			color: $white;
 		}
+	}
+	&:disabled {
+		background-color: $grey;
+		color: $black;
+		cursor: not-allowed;
 	}
 	&.danger {
 		background-color: $danger;

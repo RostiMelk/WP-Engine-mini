@@ -16,6 +16,7 @@ export default new Vuex.Store({
 		wpeUid: '',
 		wpePwd: '',
 		installsList: '',
+		backupEmail: '',
 	},
 	actions: {
 		updateApiStatus({ commit }, result) {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
 		updateInstallsList({ commit }, result) {
 			commit('updateInstallsList', result);
 		},
+		updateBackupEmail({ commit }, result) {
+			commit('updateBackupEmail', result);
+		},
 	},
 	mutations: {
 		updateApiStatus(state, result) {
@@ -43,6 +47,9 @@ export default new Vuex.Store({
 		},
 		updateInstallsList(state, result) {
 			state.installsList = result;
+		},
+		updateBackupEmail(state, result) {
+			state.backupEmail = result;
 		},
 	},
 });

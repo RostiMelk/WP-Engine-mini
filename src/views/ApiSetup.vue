@@ -4,14 +4,16 @@
       <div class="columns">
        
         <h2>Log in to WP Engine</h2>
-        <p>Generate API credentials from your WP Engine account and paste them here to connect. 
+        <p>
+            Generate API credentials from your WP Engine account and paste them here to connect. 
+            <br>
             <a href="https://wpengine.com/support/enabling-wp-engine-api/" target="_blank" class="link">
                 Learn how
                 <span class="material-icons">launch</span>
             </a>
         </p>
 
-        <form id="api-keys">
+        <form>
             <p>
                 <label>
                     API Username
@@ -80,7 +82,7 @@ export default {
 
 <style lang="scss">
   .api-setup {
-      #api-keys {
+      form {
           margin-top: 28px;
       }
   }

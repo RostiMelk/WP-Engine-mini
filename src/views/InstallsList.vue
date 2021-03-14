@@ -11,11 +11,13 @@
 	</div>
 
 	<div class="install-list" v-else>
-		<div class="row search-wrapper">
-			<div class="columns">
-				<input type="text" v-model="searchQuery" placeholder="Find a site" />
+		<section class="search-wrapper" :class="{ 'search-wrapper--hidden': !showNavbar }">
+			<div class="row">
+				<div class="columns">
+					<input type="text" v-model="searchQuery" placeholder="Find a site" />
+				</div>
 			</div>
-		</div>
+		</section>
 
 		<div class="row">
 			<ul>
@@ -26,7 +28,8 @@
 							v-show="$store.state.resultData"
 							:to="{ path: '/install', query: { installid: install.id } }"
 						>
-							{{install.name}}
+							<span class="install-name">{{install.name}}</span>
+							<EnvLabel :env="install.environment" />
 						</router-link>
 					</li>
 				</transition-group>
@@ -37,12 +40,17 @@
 
 <script>
 import axios from 'axios';
+import EnvLabel from '../components/EnvLabel.vue'
 
 export default {
 	name: 'Index',
-
+	components: {
+		EnvLabel
+	},
 	data: () => ({
 			searchQuery: null,
+			showNavbar: true,
+			lastScrollPosition: 0,
 			wpe_uid: '',
 			wpe_pwd: '',
 			installs: [],
@@ -59,11 +67,14 @@ export default {
 			this.getInstalls();
 		},
 		getInstalls() {
-			axios.get('https://api.wpengineapi.com/v1/installs?limit=200', {
-					headers: {
-						Authorization: 'Basic ' + btoa(this.wpe_uid + ':' + this.wpe_pwd)
-					}
-				})
+			const optionAxios = {
+				headers: {
+					Authorization: 'Basic ' + btoa(this.wpe_uid + ':' + this.wpe_pwd),
+				}
+			}
+
+			axios
+				.get('https://api.wpengineapi.com/v1/installs?limit=200', optionAxios)
 				.then(response => this.installs = response.data.results)
 				.then(() => {
 					this.$store.commit('updateInstallsList', this.installs);
@@ -72,11 +83,26 @@ export default {
 				.catch(() => {
 					this.installsReady = 'error';
 				});
+		},
+		onScroll () {
+			const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+			if (currentScrollPosition < 0) return
+			if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 60) return
+			this.showNavbar = currentScrollPosition < this.lastScrollPosition
+			this.lastScrollPosition = currentScrollPosition
 		}
 	},
 
 	beforeMount(){
 		this.getApiState()
+	},
+
+	mounted () {
+		window.addEventListener('scroll', this.onScroll)
+	},
+
+	beforeDestroy () {
+		window.removeEventListener('scroll', this.onScroll)
 	},
 
 	computed: {
@@ -154,6 +180,12 @@ export default {
 	.search-wrapper {
 		background-color: $grey;
 		padding: 12px 0;
+		transition: transform .35s ease-in-out;
+		position: sticky;
+		top: 58px;
+		&--hidden {
+			transform: translate3d(0, -100%, 0);
+		}
 	}
 
 	ul {
@@ -181,13 +213,22 @@ export default {
 					border-right: $primary-1 solid 2px;
 					border-bottom: $primary-1 solid 2px;
 					content: "";
-					transform: rotate(-45deg);
+					transition: all .2s ease-in-out;
+					transform: translate3d(-100%, 0, 0) rotate(-45deg);
 				}
 				&:hover {
 					background-color: $grey;
 					&::after {
 						opacity: 1;
+						transform: translate3d(0, 0, 0) rotate(-45deg);
 					}
+					.install-name {
+						width: calc(100% - 80px);
+					}
+				}
+				.install-name {
+					width: calc(100% - 24px);
+					transition: width .2s ease-in-out;
 				}
 			}
 		}

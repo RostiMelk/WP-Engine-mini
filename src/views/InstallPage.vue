@@ -1,36 +1,37 @@
 <template>
   <div class="install-page">
 
+    <div class="row">
+      <ul>
+        <ListItemRouter label="Backup" icon="backup" :link="{ path: '/new-backup', query: { installid: install.id } }" />
+        <ListItemRouter label="Clear cache" icon="cached" :link="{ path: '/clear-cache', query: { installid: install.id } }" />
+        <ListItemRouter label="Open site" icon="launch" :href="`https://${install.primary_domain}/`" />
+      </ul>
+    </div>
 
-
+    <section class="open-in-wpe-wrapper">
     <div class="row">
       <div class="columns">
-
-        <pre>{{install}}</pre>
-      
+        <!-- <pre>{{install}}</pre> -->
         <a 
         :href="`https://my.wpengine.com/installs/${install.name}/`" 
         class="button"
         target="_blank"
         >Open in WP Engine</a>
-
-        <a 
-        :href="`https://${install.primary_domain}/`" 
-        class="button secondary"
-        target="_blank"
-        >Open website</a>
-
       </div>
     </div>
+    </section>
 
   </div>
 </template>
 
 <script>
+import ListItemRouter from '../components/ListItemRouter.vue'
 
 export default {
   name: 'Start',
   components: {
+    ListItemRouter
   },
   props: ['installid'],
   data: function () {
@@ -46,10 +47,14 @@ export default {
 
 <style lang="scss">
   .install-page {
-      ul {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-      }  
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    .open-in-wpe-wrapper {
+      margin-top: 28px;
+    }
   }
 </style>

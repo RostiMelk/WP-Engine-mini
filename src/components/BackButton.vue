@@ -22,15 +22,19 @@ export default {
 
   .back-button {
     background-color: $grey;
-    padding: 10px 0;
-    margin-bottom: 16px;
     .back-btn {
       display: inline-flex;
       align-items: center;
-      padding-right: 20px;
+      padding: 10px 40px 10px 0;
       cursor: pointer;
       .icon {
         margin-right: 8px;
+        transition: transform .2s ease-in-out;
+      }
+      &:hover {
+        .icon {
+          transform: translateX(-10px);
+        }
       }
     }
   }

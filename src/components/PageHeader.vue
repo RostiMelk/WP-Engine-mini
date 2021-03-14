@@ -2,7 +2,7 @@
     <header>
         <div class="row align-center">
             <div class="columns">
-                <img src="../assets/images/wpe-mini-logo.png" class="logo" alt="WP Engine Mini logo">
+                <img src="../assets/images/wpe-mini-logo.svg" class="logo" alt="WP Engine Mini logo">
             </div>
 
             <div class="columns" v-if="this.$route.name !== 'apiSetup'" >
