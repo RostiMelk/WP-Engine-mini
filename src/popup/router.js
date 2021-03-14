@@ -3,11 +3,11 @@ import Router from 'vue-router';
 import Meta from 'vue-meta';
 import store from './store';
 
-import InstallsList from './views/InstallsList.vue';
-import ApiSetup from './views/ApiSetup.vue';
-import InstallPage from './views/InstallPage.vue';
-import NewBackup from './views/NewBackup.vue';
-import ClearCache from './views/ClearCache.vue';
+import InstallsList from '../views/InstallsList.vue';
+import ApiSetup from '../views/ApiSetup.vue';
+import InstallPage from '../views/InstallPage.vue';
+import NewBackup from '../views/NewBackup.vue';
+import ClearCache from '../views/ClearCache.vue';
 
 Vue.use(Router);
 Vue.use(Meta);
