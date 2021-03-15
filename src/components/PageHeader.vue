@@ -40,6 +40,7 @@ export default {
         .logo {
             display: block;
             height: 26px;
+            pointer-events: none;
         }
         .api-settings-btn {
             display: flex;
