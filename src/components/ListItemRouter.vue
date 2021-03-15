@@ -6,7 +6,7 @@
             {{label}}
         </router-link>
 
-        <a v-else href="href" target="_blank">
+        <a v-else :href="href" target="_blank">
             <span v-if="icon" v-text="icon" class="material-icons"></span>
             {{label}}
         </a>

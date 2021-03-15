@@ -22,6 +22,6 @@
       "512": "icons/icon512.png"
     }
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "content_security_policy": "script-src 'self' ; object-src 'self'"
 }
