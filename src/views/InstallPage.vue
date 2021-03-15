@@ -6,6 +6,7 @@
         <ListItemRouter label="Backup" icon="backup" :link="{ path: '/new-backup', query: { installid: install.id } }" />
         <ListItemRouter label="Clear cache" icon="cached" :link="{ path: '/clear-cache', query: { installid: install.id } }" />
         <ListItemRouter label="Open site" icon="launch" :href="`https://${install.primary_domain}/`" />
+        <ListItemRouter label="Admin panel" icon="login" :href="`https://${install.primary_domain}/wp-admin`" />
       </ul>
     </div>
 
